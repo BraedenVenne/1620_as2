@@ -1,8 +1,15 @@
-const createNote = document.querySelector('.create-note-area')
+const textboxTemp = `<textarea id='create-note' rows='30' cols='50'></textarea>`
+const saveBtnTemp = `<button id='save'>Save</button>`
+const cancelBtnTemp = `<button id='cancel'>Cancel</button>`
+const createNotes = document.querySelector('.create-note-area')
 const btn = document.querySelector('.icons')
-const noteArea = `<textarea class='create-note' rows='30' cols='50'></textarea>`
-const savebtn = `<button class='savedel'>save</button>`
-const cancelbtn = `<button class='savedel'>cancel</button>`
+
+
+
+
+
+
+
 const notes = [
   { 
     title: "first note", 
@@ -13,9 +20,22 @@ const notes = [
 
 
 function createNotesArea() {
-  createNote.insertAdjacentHTML('afterend', cancelbtn)
-  createNote.insertAdjacentHTML('afterend', savebtn)
-  createNote.insertAdjacentHTML('afterend', noteArea)
+  createNotes.insertAdjacentHTML('afterend', cancelBtnTemp)
+  createNotes.insertAdjacentHTML('afterend', saveBtnTemp)
+  createNotes.insertAdjacentHTML('afterend', textboxTemp)
+  
+  const cancelBtn = document.querySelector('#cancel')
+  cancelBtn.addEventListener('click', cancelNote)
+}
+
+function cancelNote() {
+  const textbox = document.querySelector('#create-note')
+  const savebtn = document.querySelector('#save')
+  const cancelbtn = document.querySelector('#cancel')
+  
+  textbox.remove()
+  savebtn.remove()
+  cancelbtn.remove()
 }
 
 
