@@ -5,11 +5,6 @@ const createNotes = document.querySelector('.create-note-area')
 const btn = document.querySelector('.icons')
 
 
-
-
-
-
-
 const notes = [
   { 
     title: "first note", 
@@ -19,6 +14,7 @@ const notes = [
 ]
 
 
+
 function createNotesArea() {
   createNotes.insertAdjacentHTML('afterend', cancelBtnTemp)
   createNotes.insertAdjacentHTML('afterend', saveBtnTemp)
@@ -26,9 +22,12 @@ function createNotesArea() {
   
   const cancelBtn = document.querySelector('#cancel')
   cancelBtn.addEventListener('click', cancelNote)
+
+  const saveBtn = document.querySelector('#save')
+  saveBtn.addEventListener('click', saveNote)
 }
 
-function cancelNote() {
+function cancelNote(evt) {
   const textbox = document.querySelector('#create-note')
   const savebtn = document.querySelector('#save')
   const cancelbtn = document.querySelector('#cancel')
@@ -36,6 +35,18 @@ function cancelNote() {
   textbox.remove()
   savebtn.remove()
   cancelbtn.remove()
+}
+
+function saveNote(evt) {
+  const textbox = document.querySelector('#create-note')
+  var text = textbox.value.split('\n')
+  var textTitle = text[0]
+  var textBody = text.slice(1)
+  
+  notes.push({title: textTitle, noteBody: textBody, id:notes.length + 1})
+  console.log(notes)
+
+  cancelNote(evt)
 }
 
 
