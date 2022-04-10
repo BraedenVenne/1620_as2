@@ -1,8 +1,10 @@
 const textboxTemp = `<textarea id='create-note' rows='30' cols='50'></textarea>`
 const saveBtnTemp = `<button id='save'>Save</button>`
 const cancelBtnTemp = `<button id='cancel'>Cancel</button>`
+const closeBtnTemp = `<button id='close'>Close</button>`
 const createNotes = document.querySelector('.write-note-area')
 const btn = document.querySelector('.fa-circle-plus')
+
 
 
 const notes = [
@@ -72,8 +74,21 @@ function noteTitleBtn(id) {
 }
 
 function readNotes() {
-  alert('Test')
+  const newNote = notes[notes.length - 1]
+  const textAreaTemp = `<textarea id='create-note' rows='30' cols='50'>${newNote.noteBody}</textarea>`
+  createNotes.insertAdjacentHTML('afterend', closeBtnTemp)
+  createNotes.insertAdjacentHTML('afterend', textAreaTemp)
+
+  const closeBtn = document.querySelector('#close')
+  closeBtn.addEventListener('click', closeNote)
 }
 
+function closeNote() {
+  const textbox = document.querySelector('#create-note')
+  const closebtn = document.querySelector('#close')
+  
+  textbox.remove()
+  closebtn.remove()
+}
 
 btn.addEventListener('click', createNotesArea)
