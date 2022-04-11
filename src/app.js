@@ -8,6 +8,7 @@ const pTemp = `<p></p>`
 
 const createNotes = document.querySelector('.write-note-area')
 const noteBtn = document.querySelector('.fa-circle-plus')
+const readNoteArea = document.querySelector('.read-note-area')
 
 //Array used for storing note titles, body, and ids
 const notes = [
@@ -78,15 +79,15 @@ function noteTitleBtn(id) {
 
 //Opens the saved notes and adds a close button
 function readNotes() {
-  createNotes.insertAdjacentHTML('afterend', closeBtnTemp)
+  readNoteArea.insertAdjacentHTML('afterend', closeBtnTemp)
 
-  
 
   const newNote = notes[notes.length - 1]
   let noteTitle = `<h1 id=${newNote.id}>${newNote.title}</h1>`
   let note = `<p id=${newNote.id}>${newNote.noteBody}</p>`
-  createNotes.insertAdjacentHTML('afterend', noteTitle)
-  createNotes.insertAdjacentHTML('afterend', note)
+  readNoteArea.insertAdjacentHTML('afterend', note)
+  readNoteArea.insertAdjacentHTML('afterend', noteTitle)
+
 
   const closeBtn = document.querySelector('#close')
   closeBtn.addEventListener('click', closeNote)
@@ -102,15 +103,9 @@ noteBtn.addEventListener('click', createNotesArea)
 
 //Bonus
 //Toggles dark-theme
-function toggleDarkMode(evt) {
+function toggleDarkMode() {
   const mainContainer = document.querySelector('.main-container')
-  if (evt.checked == true) {
-    mainContainer.classList.toggle('light-theme')
-  } else {
-    mainContainer.classList.toggle('dark-theme')
-  }
-
-
+  mainContainer.classList.toggle('dark-theme')
 }
 
 const themeBtn = document.querySelector('.theme-toggle')

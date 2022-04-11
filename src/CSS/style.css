@@ -58,6 +58,10 @@
   font-size: var(--lrg-txt);
 }
 
+.side-nav ul {
+  color: var(--text);
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -138,3 +142,11 @@ footer p {
   font-size: var(--lrg-txt);
 }
 
+h1 {
+  color: var(--text);
+  font-size: var(--lrg-txt)
+}
+
+p {
+  color: var(--text);
+}
