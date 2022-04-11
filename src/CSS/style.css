@@ -17,9 +17,12 @@
   --text:     var(--not-black);
 }
 
-/* .dark-theme { */
-/*   --bg-color: var(--not-grey); */
-/* } */
+.dark-theme { 
+  --bg-color: var(--not-grey);
+  --bg-side:  var(--muted);
+  --text:     var(--not-white);
+  --lrg-text: var(--not-white);
+}
 
 * {
   margin: 0;
@@ -134,3 +137,4 @@ footer p {
   color: var(--text);
   font-size: var(--lrg-txt);
 }
+
