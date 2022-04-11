@@ -19,10 +19,12 @@ const notes = [
 
 //Creates a textbox with a save and cancel button
 function createNotesArea() {
+  noteBtn.removeEventListener('click', createNotesArea)
   createNotes.insertAdjacentHTML('afterend', cancelBtnTemp)
   createNotes.insertAdjacentHTML('afterend', saveBtnTemp)
   createNotes.insertAdjacentHTML('afterend', textboxTemp)
   
+
   const cancelBtn = document.querySelector('#cancel')
   cancelBtn.addEventListener('click', cancelNote)
 
@@ -39,6 +41,7 @@ function cancelNote(evt) {
   textbox.remove()
   savebtn.remove()
   cancelbtn.remove()
+  createNoteBtn()
 }
 
 //Saves the note after clicking the Save button
@@ -59,6 +62,7 @@ function saveNote(evt) {
   noteTitles(textTitle)
   noteTitleBtn(id)
   cancelNote(evt)
+  createNoteBtn()
 }
 
 //Stores the note titles in the side nav list
@@ -77,6 +81,7 @@ function noteTitleBtn(id) {
 
 //Opens the saved notes and adds a close button
 function readNotes(evt) {
+  noteBtn.removeEventListener('click', createNotesArea)
   readNoteArea.insertAdjacentHTML('afterend', closeBtnTemp)
   let hTemp = `<h1 id=${notes[evt.target.id - 1]}>${notes[evt.target.id - 1].title}</h1>`
   let pTemp = `<p id=${notes[evt.target.id - 1]}></p>`
@@ -99,10 +104,16 @@ function closeNote() {
     readNoteArea.removeChild(readNoteArea.firstChild)
   }
   closeBtn.remove()
+  createNoteBtn()
 }
 
-//Opens the note area after pressing the plus button
-noteBtn.addEventListener('click', createNotesArea)
+
+//Function that adds the event listener back to the plus button
+function createNoteBtn() {
+  noteBtn.addEventListener('click', createNotesArea)
+}
+
+createNoteBtn()
 
 //Bonus
 //Toggles dark-theme
