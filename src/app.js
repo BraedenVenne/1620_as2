@@ -4,9 +4,11 @@ const saveBtnTemp = `<button id='save'>Save</button>`
 const cancelBtnTemp = `<button id='cancel'>Cancel</button>`
 const closeBtnTemp = `<button id='close'>Close</button>`
 
+
 const createNotes = document.querySelector('.write-note-area')
 const noteBtn = document.querySelector('.fa-circle-plus')
 const readNoteArea = document.querySelector('.read-note-area')
+
 
 //Array used for storing note titles, body, and ids
 const notes = [
@@ -81,13 +83,17 @@ function noteTitleBtn(id) {
 
 //Opens the saved notes and adds a close button
 function readNotes(evt) {
-  noteBtn.removeEventListener('click', createNotesArea)
   readNoteArea.insertAdjacentHTML('afterend', closeBtnTemp)
-  let hTemp = `<h1 id=${notes[evt.target.id - 1]}>${notes[evt.target.id - 1].title}</h1>`
-  let pTemp = `<p id=${notes[evt.target.id - 1]}></p>`
-  readNoteArea.insertAdjacentHTML('beforeend', hTemp)
-  readNoteArea.insertAdjacentHTML('beforeend', pTemp)
-
+  let hTemp = `<h1 id=note-title>${notes[evt.target.id - 1].title}</h1>`
+  let pTemp = `<p id=note-body></p>`
+  if (readNoteArea.contains(document.querySelector('#note-title'))) {
+    closeNote()
+    readNoteArea.insertAdjacentHTML('beforeend', hTemp)
+    readNoteArea.insertAdjacentHTML('beforeend', pTemp)
+  } else {
+    readNoteArea.insertAdjacentHTML('beforeend', hTemp)
+    readNoteArea.insertAdjacentHTML('beforeend', pTemp)
+  }
   for (const words of notes[evt.target.id - 1].noteBody) {
     readNoteArea.insertAdjacentHTML('beforeend', words)
     readNoteArea.insertAdjacentHTML('beforeend', `<br>`)
@@ -104,7 +110,6 @@ function closeNote() {
     readNoteArea.removeChild(readNoteArea.firstChild)
   }
   closeBtn.remove()
-  createNoteBtn()
 }
 
 
