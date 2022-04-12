@@ -57,6 +57,7 @@
 }
 
 .side-nav span p {
+  font-family: 'Libre Baskerville', serif;
   font-size: var(--lrg-txt);
 }
 
@@ -86,6 +87,7 @@ header ul {
 }
 
 header li {
+  font-family: 'Libre Baskerville', serif;
   list-style: none;
   padding: var(--lrg-txt);
 }
@@ -103,7 +105,8 @@ header a {
 }
 
 .note-area {
-  width: 90%
+  min-width: 90%;
+  max-width: fit-content;
 }
 
 article {
@@ -114,6 +117,7 @@ article {
   font-family: 'Libre Baskerville', serif;
   color: var(--text);
   font-size: 1.6rem;
+  word-wrap: break-word;
 }
 
 i {
@@ -125,6 +129,7 @@ i {
 }
 
 textarea {
+  font-family: 'Libre Baskerville', serif;
   caret-color: var(--not-red);
   border: none;
   border-bottom: 2px solid var(--text);
@@ -140,20 +145,25 @@ footer {
 }
 
 footer p {
+  font-family: 'Libre Baskerville', serif;
   color: var(--text);
   font-size: var(--lrg-txt);
 }
 
 h1 {
+  font-family: 'Quicksand', sans-serif;
   color: var(--text);
   font-size: var(--lrg-txt);
+  word-wrap: break-word;
 }
 
-
 button {
+  font-family: 'Libre Baskerville', serif;
   color:  var(--bg-color);
   background-color: var(--text);
   font-size: 16px;
+  border: solid var(--bg-color);
   border-radius: 8px;
-  width: 50px;
+  width: 100px;
+  margin-top: 5px;
 }

@@ -1,13 +1,14 @@
 //Created templates
-const textboxTemp = `<textarea id='create-note' rows='30' cols='50'></textarea>`
-const saveBtnTemp = `<button id='save'>Save</button>`
-const cancelBtnTemp = `<button id='cancel'>Cancel</button>`
+const textboxTemp = `<textarea id='create-note' rows='30' cols='50' placeholder='Title... \nBody...'></textarea>`
+// const saveBtnTemp = `<button id='save'>Save</button>`
+// const cancelBtnTemp = `<button id='cancel'>Cancel</button>`
 const closeBtnTemp = `<button id='close'>Close</button>`
-
+const saveCancelBtnTemp = "<div><button id='save'>save</button><button id='cancel'>Cancel</button></div>"
 
 const createNotes = document.querySelector('.write-note-area')
 const noteBtn = document.querySelector('.fa-circle-plus')
 const readNoteArea = document.querySelector('.read-note-area')
+
 
 
 //Array used for storing note titles, body, and ids
@@ -22,8 +23,7 @@ const notes = [
 //Creates a textbox with a save and cancel button
 function createNotesArea() {
   noteBtn.removeEventListener('click', createNotesArea)
-  createNotes.insertAdjacentHTML('afterend', cancelBtnTemp)
-  createNotes.insertAdjacentHTML('afterend', saveBtnTemp)
+  createNotes.insertAdjacentHTML('afterend', saveCancelBtnTemp)
   createNotes.insertAdjacentHTML('afterend', textboxTemp)
 
   if (readNoteArea.contains(document.querySelector('#note-title'))) {
@@ -80,8 +80,13 @@ function noteTitles() {
 
 //Adds event listeners to the titles in the list
 function noteTitleBtn(id) {
+  const createNoteArea = document.querySelector('.create-note-area')
+
   const noteTitles = document.getElementById(id)
   noteTitles.addEventListener('click', readNotes)
+  if (createNoteArea.contains(document.querySelector('#create-note'))) {
+    closeNote()
+  }
 }
 
 //Opens the saved notes and adds a close button
@@ -97,8 +102,8 @@ function readNotes(evt) {
   } else {
     readNoteArea.insertAdjacentHTML('beforeend', hTemp)
     readNoteArea.insertAdjacentHTML('beforeend', pTemp)
-
   }
+
   for (const words of notes[evt.target.id - 1].noteBody) {
     const noteP = document.querySelector('#note-body')
     noteP.insertAdjacentHTML('beforeend', words)
@@ -108,7 +113,8 @@ function readNotes(evt) {
 
   const closeBtn = document.querySelector('#close')
   closeBtn.addEventListener('click', closeNote)
-  cancelNote()
+
+
 }
 
 //Closes the notes after pressing the Close button
