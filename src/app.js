@@ -25,7 +25,10 @@ function createNotesArea() {
   createNotes.insertAdjacentHTML('afterend', cancelBtnTemp)
   createNotes.insertAdjacentHTML('afterend', saveBtnTemp)
   createNotes.insertAdjacentHTML('afterend', textboxTemp)
-  
+
+  if (readNoteArea.contains(document.querySelector('#note-title'))) {
+    closeNote()
+  }
 
   const cancelBtn = document.querySelector('#cancel')
   cancelBtn.addEventListener('click', cancelNote)
@@ -68,7 +71,7 @@ function saveNote(evt) {
 }
 
 //Stores the note titles in the side nav list
-function noteTitles(evt) {
+function noteTitles() {
   const noteID = notes[notes.length - 1]
   const navBar = document.querySelector('.notes-list')
   let titles = `<li id=${noteID.id}>${noteID.title}</li>`
@@ -84,8 +87,9 @@ function noteTitleBtn(id) {
 //Opens the saved notes and adds a close button
 function readNotes(evt) {
   readNoteArea.insertAdjacentHTML('afterend', closeBtnTemp)
-  let hTemp = `<h1 id=note-title>${notes[evt.target.id - 1].title}</h1>`
-  let pTemp = `<p id=note-body></p>`
+  let hTemp = `<h1 id='note-title'>${notes[evt.target.id - 1].title}</h1>`
+  let pTemp = `<p id='note-body'></p>`
+
   if (readNoteArea.contains(document.querySelector('#note-title'))) {
     closeNote()
     readNoteArea.insertAdjacentHTML('beforeend', hTemp)
@@ -93,14 +97,18 @@ function readNotes(evt) {
   } else {
     readNoteArea.insertAdjacentHTML('beforeend', hTemp)
     readNoteArea.insertAdjacentHTML('beforeend', pTemp)
+
   }
   for (const words of notes[evt.target.id - 1].noteBody) {
-    readNoteArea.insertAdjacentHTML('beforeend', words)
-    readNoteArea.insertAdjacentHTML('beforeend', `<br>`)
+    const noteP = document.querySelector('#note-body')
+    noteP.insertAdjacentHTML('beforeend', words)
+    noteP.insertAdjacentHTML('beforeend', `<br>`)
   }
+
 
   const closeBtn = document.querySelector('#close')
   closeBtn.addEventListener('click', closeNote)
+  cancelNote()
 }
 
 //Closes the notes after pressing the Close button
